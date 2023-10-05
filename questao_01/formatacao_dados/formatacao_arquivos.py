@@ -6,7 +6,7 @@ def funcao_formatacao(arquivo):
     array1 = array_1.replace("\n", "")
     array2= array1.split(" ")
     numero_v = int(array2[0])
-    a = array2[1:numero_v+1]
+    a = array2[1:numero_v+2]
     b = array2[numero_v+2:]
 
 
