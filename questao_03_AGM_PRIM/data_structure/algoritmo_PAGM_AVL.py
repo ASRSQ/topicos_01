@@ -1,7 +1,6 @@
-from data_structure.constroiGrafo import constroi_grafo_de_arquivo
 from data_structure.arvore_AVL import AVLTree
 
-def prim_avl(graph):
+def Prim_AVL(graph):
     # Inicialize a árvore AVL vazia
     tree = AVLTree()
     
@@ -39,13 +38,3 @@ def prim_avl(graph):
             total_weight += min_weight
     
     return mst, total_weight
-# Lê o arquivo desejado e constroi o grafo com os dados
-filename = './instances/dados.txt'
-graph = constroi_grafo_de_arquivo(filename)
-
-#Inicializa o algoritmo de prim_avl e imprime as arestas e pesos correspondentes a cada aresta e por fim o peso total
-minimum_spanning_tree, total_weight = prim_avl(graph)
-print("Arestas da árvore geradora mínima:")
-for edge, weight in minimum_spanning_tree:
-    print(f"Aresta {edge} com peso {weight}")
-print(f"Peso total da árvore geradora mínima: {total_weight}")

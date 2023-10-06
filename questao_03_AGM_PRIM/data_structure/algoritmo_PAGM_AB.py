@@ -1,7 +1,6 @@
 from data_structure.arvore_binaria import BinaryTree
-from data_structure.constroiGrafo import constroi_grafo_de_arquivo
 
-def AGM_Prim(graph, root):
+def Prim_AB(graph, root):
     X = set()
     Q = set(graph.keys())
     pi = {u: None for u in graph}
@@ -37,15 +36,3 @@ def AGM_Prim(graph, root):
                     pi[v] = u
     
     return X, total_weight, weights
-
-filename = './instances/dados.txt'
-graph = constroi_grafo_de_arquivo(filename)
-
-root = '1'
-
-arvore_geradora_minima, total_pesos, pesos = AGM_Prim(graph, root)
-print("Árvore Geradora Mínima:")
-for edge in arvore_geradora_minima:
-    print(edge, "-", pesos[edge])
-
-print(f"Peso Total da Árvore Geradora Mínima: {total_pesos}")
