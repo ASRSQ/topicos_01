@@ -27,12 +27,11 @@ def somaR(array):
 
 
 for k in range(quant_num):
-    for j in range(quant_num):
-        if k == j:
-            if array_a[k]/array_b[k] > R:
-                if (array_a[k], array_b[k]) not in S:
-                    S.append((array_a[k], array_b[k]))
-                R = somaR(S)
+    if array_a[k]/array_b[k] > R:
+        if (array_a[k], array_b[k]) not in S:
+            S.append((array_a[k], array_b[k]))
+        R = somaR(S)
+
 
 print(S)
 print(R)
