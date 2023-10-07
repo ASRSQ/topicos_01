@@ -1,6 +1,6 @@
 import math 
 
-from merge_sort import merge_sort
+from algorithms.merge_sort import merge_sort
 
 def select_bfprt_factory(partition_size):
     def select_bfprt(array, k):
