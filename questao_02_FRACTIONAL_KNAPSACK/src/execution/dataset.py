@@ -1,7 +1,9 @@
 import uuid
 import time
+import random
 from utils.logger import logger
 from utils import get_data_from_file, Folder
+from algorithms import Item
 
 class Dataset:
     def __init__(self, file):
@@ -32,16 +34,36 @@ class Dataset:
         return path
 
     def get_data(self):
-        file = self.get_file()
-        file_path = file.get_path()
-        file_name = file.get_name()
+        # file = self.get_file()
+        # file_path = file.get_path()
+        # file_name = file.get_name()
         
         if hasattr(self, "data"):
             return self.data
 
-        file_full_path = f'{file_path}/{file_name}'
-        self.data = get_data_from_file(file_full_path)
+        data = []
+        w = []
+        v = []
+        size = self.get_input_size()
+
+        for i in range(size):
+            peso = random.randint(1, size)
+            valor = random.randint(1, size)
+            w.append(peso)
+            v.append(valor)
+
+        random.shuffle(v)
+        random.shuffle(w)
+
+        for i in range(size):
+            data.append(Item(w[i], v[i]))
+
+        self.data = data
         return self.data
+
+        # file_full_path = f'{file_path}/{file_name}'
+        # self.data = get_data_from_file(file_full_path)
+        # return self.data
 
     def get_input_size(self):
         return int(self.get_name().replace("itens_", ""))

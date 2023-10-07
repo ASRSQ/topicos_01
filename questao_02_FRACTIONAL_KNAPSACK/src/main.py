@@ -13,17 +13,17 @@ class SearchAlgorithmsInstanceExecutor(InstanceExecutor):
         self.create_instances()
 
     def create_instances(self):
-        for dataset in self.dataset_collection.get_datasets():
-            for algorithm in self.algorithm_collection.get_algorithms():
+        for algorithm in self.algorithm_collection.get_algorithms():
+            for dataset in self.dataset_collection.get_datasets():
                 for _ in range(1):
                     algorithm_name = algorithm.get_name()
                     instance = Instance(algorithm, dataset)
                     self.instances.append(instance)
 
     def execute(self):
-        sorted_instances = sorted(self.instances, key=lambda instance: instance.complexity_steps())
+        # sorted_instances = sorted(self.instances, key=lambda instance: instance.complexity_steps())
 
-        for i, instance in enumerate(sorted_instances):
+        for i, instance in enumerate(self.instances):
 
             uuid = instance.get_uuid()
             dataset = instance.get_dataset()
@@ -37,7 +37,7 @@ class SearchAlgorithmsInstanceExecutor(InstanceExecutor):
             complexity_steps = instance.complexity_steps()
             instance_input = instance.get_input()
 
-            logger.info(f"Instance {i + 1} of {len(sorted_instances)}")
+            logger.info(f"Instance {i + 1} of {len(self.instances)}")
             logger.info(f"Algorithm: {instance.get_algorithm().get_name()}")
             logger.info(f"Dataset: {instance.get_dataset().get_name()}")
             logger.info(f"Complexity Steps: {complexity_steps}")
@@ -62,9 +62,24 @@ if __name__ == "__main__":
     algorithm_collection = AlgorithmCollection()
     dataset_group_collection = DatasetGroupCollection(dataset_group_collection_path, dataset_group_folder_names)
 
+    import random
+
+    from algorithms import Item
+
+    # items = []
+
+    # v = []
+    # w = []
+
+    # size = 1000000
+    
+
+    # print(median_of_medians_fractional_knapsack(items, size))
+    # print(mean_partition_fractional_knapsack(items, size))
+
     algorithm_collection.add_algorithm("Sorted - Fractional Knapsack", sorted_fractional_knapsack, Complexity.o_n_log_n)
-    algorithm_collection.add_algorithm("Median of Medians - Fractional Knapsack", median_of_medians_fractional_knapsack, Complexity.o_n)
     algorithm_collection.add_algorithm("Mean Partition - Fractional Knapsack", mean_partition_fractional_knapsack, Complexity.o_n)
+    algorithm_collection.add_algorithm("Median of Medians - Fractional Knapsack", median_of_medians_fractional_knapsack, Complexity.o_n)
 
     executor = SearchAlgorithmsInstanceExecutor(algorithm_collection, dataset_group_collection)
     executor.execute()
