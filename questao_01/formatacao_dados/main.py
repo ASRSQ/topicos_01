@@ -6,8 +6,10 @@ quant_num = arquivo1['quant_num']
 array_a = [int(a) for a in arquivo1['array_a']]
 array_b = [int(b) for b in arquivo1['array_b']]
 
-S = [(array_a[0], array_b[0]), (array_a[1], array_b[1])]
+S = [(array_a[0], array_b[0])]
 R = array_a[0]/array_b[0]
+
+print(quant_num)
 
 
 def somaR(array):
@@ -26,7 +28,7 @@ def somaR(array):
     return R
 
 
-for k in range(quant_num):
+for k in range(quant_num + 1):
     if array_a[k]/array_b[k] > R:
         if (array_a[k], array_b[k]) not in S:
             S.append((array_a[k], array_b[k]))
