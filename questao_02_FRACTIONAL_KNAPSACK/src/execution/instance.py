@@ -21,7 +21,7 @@ class Instance:
         return self.dataset
 
     def get_params(self):
-        data = self.dataset.get_data()
+        data = self.dataset.get_data().copy()
         params = [data]
 
         if self.input is None:
