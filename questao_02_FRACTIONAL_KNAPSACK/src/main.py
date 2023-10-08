@@ -13,8 +13,8 @@ class SearchAlgorithmsInstanceExecutor(InstanceExecutor):
         self.create_instances()
 
     def create_instances(self):
-        for algorithm in self.algorithm_collection.get_algorithms():
-            for dataset in self.dataset_collection.get_datasets():
+        for dataset in self.dataset_collection.get_datasets():
+            for algorithm in self.algorithm_collection.get_algorithms():
                 for _ in range(1):
                     algorithm_name = algorithm.get_name()
                     instance = Instance(algorithm, dataset)
@@ -32,6 +32,7 @@ class SearchAlgorithmsInstanceExecutor(InstanceExecutor):
             instance.set_input(W)
             
             dataset_name = dataset.get_name()
+            dataset_size = dataset.get_input_size()
             dataset_type = dataset.get_dataset_type()
             algorithm_name = instance.get_algorithm().get_name()
             complexity_steps = instance.complexity_steps()
@@ -53,7 +54,7 @@ class SearchAlgorithmsInstanceExecutor(InstanceExecutor):
             logger.info(f'{"-" * 50}')
 
             with open(f'data/output.csv', 'a') as file:
-                file.write(f"{uuid},{dataset_type},{algorithm_name},{dataset_name},{formated_execution_time},{formated_peak_memory_usage},{instance_input},{output},{complexity_steps},\n")
+                file.write(f"{uuid},{dataset_type},{algorithm_name},{dataset_name},{dataset_size},{formated_execution_time},{formated_peak_memory_usage},{instance_input},{output},{complexity_steps}\n")
 
 if __name__ == "__main__":
     dataset_group_collection_path = os.path.abspath("data")
