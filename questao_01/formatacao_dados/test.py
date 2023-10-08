@@ -87,3 +87,21 @@
 # # R, S = encontrar_R_S(coef_a, coef_b)
 
 # print(encontrar_R_S(coef_a, coef_b))
+
+# num = 7
+
+# if num != 0:
+#     print("oi")
+
+# num = str(70).zfill(2)
+# string_formatada = f'objeto {num}'
+# print(string_formatada)
+
+# def teste():
+#     return 1, 2
+
+
+# a = teste()
+
+# print(a)
+# # print(b)
