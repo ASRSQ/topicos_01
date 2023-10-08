@@ -54,7 +54,7 @@ class SearchAlgorithmsInstanceExecutor(InstanceExecutor):
             logger.info(f'{"-" * 50}')
 
             with open(f'data/output.csv', 'a') as file:
-                file.write(f"{uuid},{dataset_type},{algorithm_name},{dataset_name},{dataset_size},{formated_execution_time},{formated_peak_memory_usage},{instance_input},{output},{complexity_steps}\n")
+                file.write(f"{uuid},{algorithm_name},{dataset_name},{dataset_size},{formated_execution_time},{formated_peak_memory_usage},{instance_input},{output},{complexity_steps}\n")
 
 if __name__ == "__main__":
     dataset_group_collection_path = os.path.abspath("data")
@@ -62,21 +62,6 @@ if __name__ == "__main__":
     
     algorithm_collection = AlgorithmCollection()
     dataset_group_collection = DatasetGroupCollection(dataset_group_collection_path, dataset_group_folder_names)
-
-    import random
-
-    from algorithms import Item
-
-    # items = []
-
-    # v = []
-    # w = []
-
-    # size = 1000000
-    
-
-    # print(median_of_medians_fractional_knapsack(items, size))
-    # print(mean_partition_fractional_knapsack(items, size))
 
     algorithm_collection.add_algorithm("Sorted - Fractional Knapsack", sorted_fractional_knapsack, Complexity.o_n_log_n)
     algorithm_collection.add_algorithm("Mean Partition - Fractional Knapsack", mean_partition_fractional_knapsack, Complexity.o_n)
